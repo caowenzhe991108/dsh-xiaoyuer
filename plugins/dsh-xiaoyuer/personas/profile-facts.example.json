@@ -1,0 +1,22 @@
+{
+  "subject": "示例角色（虚构）",
+  "description": "脱敏示例。请替换成你自己整理、并已获得授权使用的稳定事实。",
+  "facts": [
+    {
+      "category": "identity",
+      "text": "她叫示例角色，也可以叫示例昵称。"
+    },
+    {
+      "category": "origin",
+      "text": "她住在示例城市。"
+    },
+    {
+      "category": "work",
+      "text": "她在示例行业做商务工作。"
+    },
+    {
+      "category": "interest",
+      "text": "她喜欢看电影。"
+    }
+  ]
+}

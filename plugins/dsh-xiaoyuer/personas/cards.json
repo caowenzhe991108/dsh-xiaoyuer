@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "cards": [
+    {
+      "id": "ex",
+      "title": "前女友（示例人设）",
+      "description": "脱敏示例：短句、直白、松弛；会召回并按确认写入 Hindsight。请替换成你自己的授权资料。",
+      "prompt": "ex-girlfriend.md",
+      "memoryEnabled": true,
+      "voice": "zh-CN-XiaoxiaoNeural"
+    },
+    {
+      "id": "assistant",
+      "title": "普通助手",
+      "description": "不启用前女友人设，不使用任何长期记忆。",
+      "prompt": "assistant.md",
+      "memoryEnabled": false,
+      "voice": "zh-CN-XiaoxiaoNeural"
+    }
+  ]
+}

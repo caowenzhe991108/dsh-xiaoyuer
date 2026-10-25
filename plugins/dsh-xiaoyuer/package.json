@@ -1,0 +1,37 @@
+{
+  "name": "@local/dsh-xiaoyuer",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "前女友语音记忆助手：Hindsight 长期记忆、按会话人设/记忆开关、SiliconFlow ASR、Edge TTS。",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./personas/*.md": "./personas/*.md",
+    "./personas/*.json": "./personas/*.json",
+    "./icon": "./icon.svg"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "cordis.patch.yml",
+    "icon.svg",
+    "lib/**/*.js",
+    "scripts/**/*.py",
+    "personas/**/*.md",
+    "personas/**/*.json"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-api-session-controller",
+        "@deepseek-ai/dsh-client-ui-conversation"
+      ]
+    }
+  }
+}

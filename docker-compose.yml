@@ -1,0 +1,41 @@
+services:
+  hindsight:
+    image: ghcr.io/vectorize-io/hindsight:latest
+    pull_policy: always
+    container_name: hindsight
+    restart: unless-stopped
+    ports:
+      - "8888:8888"
+      - "9999:9999"
+    environment:
+      HINDSIGHT_API_LLM_PROVIDER: ${HINDSIGHT_API_LLM_PROVIDER:-openai}
+      HINDSIGHT_API_LLM_MODEL: ${HINDSIGHT_API_LLM_MODEL:-gpt-4o-mini}
+      HINDSIGHT_API_LLM_API_KEY: ${HINDSIGHT_API_LLM_API_KEY:?请在 .env 中设置 HINDSIGHT_API_LLM_API_KEY}
+      # 如需 OpenAI 兼容网关（DeepSeek/SiliconFlow 等），取消下一行注释并填写：
+      # HINDSIGHT_API_LLM_BASE_URL: ${HINDSIGHT_API_LLM_BASE_URL}
+      # 国内网络从 Hugging Face 下载本地 embedding 模型通常需要镜像。
+      HF_ENDPOINT: ${HF_ENDPOINT:-https://hf-mirror.com}
+      HINDSIGHT_API_EMBEDDINGS_LOCAL_MODEL: ${HINDSIGHT_API_EMBEDDINGS_LOCAL_MODEL:-BAAI/bge-small-zh-v1.5}
+      # English MiniLM reranker scores Chinese candidates almost identically;
+      # RRF fusion without a cross-encoder gives better ordering here.
+      HINDSIGHT_API_RERANKER_PROVIDER: ${HINDSIGHT_API_RERANKER_PROVIDER:-rrf}
+      HINDSIGHT_API_WORKER_ID: hindsight
+    volumes:
+      - hindsight-data:/home/hindsight/.pg0
+      - hindsight-hf-cache:/home/hindsight/.cache/huggingface
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "python",
+          "-c",
+          "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8888/health', timeout=3).read()",
+        ]
+      interval: 15s
+      timeout: 5s
+      retries: 20
+      start_period: 300s
+
+volumes:
+  hindsight-data:
+  hindsight-hf-cache:

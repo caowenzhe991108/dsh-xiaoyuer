@@ -1,0 +1,14 @@
+# Xiaoyuer bundle layer. Secrets belong in environment variables, never here.
+- insert:
+    - id: xiaoyuer
+      name: '@local/dsh-xiaoyuer'
+      config:
+        endpoint: http://localhost:8888
+        bankId: xiaoyu
+        autoRemember: true
+        systemPromptSection: true
+        defaultPersona: ex
+        defaultMemoryEnabled: true
+        edgeTtsVoice: zh-CN-XiaoxiaoNeural
+        edgeTtsRate: +0%
+        edgeTtsPitch: +0Hz

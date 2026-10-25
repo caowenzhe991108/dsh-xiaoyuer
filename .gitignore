@@ -1,0 +1,24 @@
+# Secrets and local state
+.env
+secrets.json
+*.secret
+.venv/
+venv/
+.dsh-test/
+.test/
+.cache/
+.references/
+
+# Generated artifacts
+PHONE_URL.txt
+distill-output/
+node_modules/
+*.log
+*.tmp
+*.mp3
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+persona-import-log.json
